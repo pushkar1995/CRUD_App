@@ -1,0 +1,24 @@
+Purpose of Application
+
+To learn basic concepts of React instead of going in complexity
+
+1. Learn CRUD operation
+    i. Create
+    ii. Read
+    iii. Update
+    iv. Delete
+2. Without Backend API,Data stored in local storage
+
+3. Without any UI component library
+
+4. Without any state management library
+
+
+What you will learn from this application
+You will learn, how to use
+
+1. Functional components
+2. useState and useEffect Hooks
+3. How to pass data from Parent to child component
+4. JavaScript array
+5. Applying styles in React
