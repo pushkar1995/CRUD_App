@@ -11,7 +11,7 @@ const Home = () => {
 
     const onAddEmployeeClickHnd = () => {
         setShownPage(PageEnum.add)
-    }
+    } 
 
     const showListPage = () => {
         setShownPage(PageEnum.list)
@@ -19,6 +19,15 @@ const Home = () => {
 
     const addEmployee = (data: IEmployee) => {
         setEmployeeList([...employeeList, data])
+    }
+
+    const deleteEmployee = (data: IEmployee) => {
+        //To Index from array i.e. employeeList ,splice that and Update new record.
+        const indexToDelete = employeeList.indexOf(data)
+        const tempList = [...employeeList]
+
+        tempList.splice(indexToDelete, 1);
+        setEmployeeList(tempList)
     }
 
   return (
@@ -32,7 +41,11 @@ const Home = () => {
         {shownPage === PageEnum.list && (
         <>
             <button type='button' className='float-right border h-7 w-32 m-2' onClick={onAddEmployeeClickHnd}>Add Employee</button>
-            <EmployeeList list={employeeList}/>
+            <EmployeeList 
+                list={employeeList}
+                onDeleteClickHnd={deleteEmployee}
+                //Passing Callback Function for (delete item)deleteEmployee
+            />
         </>
         )}
         {shownPage === PageEnum.add && <AddEmployee onBackBtnClickHnd={showListPage} onSubmitClickHnd={addEmployee}/>}

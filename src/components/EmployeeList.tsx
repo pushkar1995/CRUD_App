@@ -2,11 +2,12 @@ import React from 'react'
 import { IEmployee } from './Employee.type'
 
 type Props = {
-    list: IEmployee[]
+    list: IEmployee[],
+    onDeleteClickHnd: (data: IEmployee) => void
 }
 
 const EmployeeList = (props: Props) => {
-    const { list } = props
+    const { list, onDeleteClickHnd } = props
     //Destructuring the Object
 
   return (
@@ -30,7 +31,13 @@ const EmployeeList = (props: Props) => {
                             <div className=''>
                                 <button type='button' value='View' className='border h-7 w-24'>View</button>
                                 <button type='button' value='Edit' className='border h-7 w-24 ml-2'>Edit</button>
-                                <button type='button' value='Delete' className='border h-7 w-24 ml-2'>Delete</button>
+                                <button
+                                     type='button' 
+                                     value='Delete' 
+                                     className='border h-7 w-24 ml-2'
+                                     onClick={() => onDeleteClickHnd(employee)}
+                                     //Calling the Callback function
+                                     >Delete</button>
                             </div>
                         </td>
                     </tr> 
