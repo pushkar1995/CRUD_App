@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IEmployee } from './Employee.type'
+import EmployeeModal from './EmployeeModal'
 
 type Props = {
     list: IEmployee[],
@@ -10,6 +11,14 @@ const EmployeeList = (props: Props) => {
     const { list, onDeleteClickHnd } = props
     //Destructuring the Object
 
+    const [showModal, setShowModal] = useState(false)
+
+    const viewEmployee = () => {
+        setShowModal(true)
+    }
+
+    const onCloseModal = () => setShowModal(false)
+    
   return (
     <div>
         <article>
@@ -29,8 +38,16 @@ const EmployeeList = (props: Props) => {
                         <td className='p-2 border border-secondary-light text-left'>{employee.email}</td>
                         <td className='p-2 border border-secondary-light text-left'>
                             <div className=''>
-                                <button type='button' value='View' className='border h-7 w-24'>View</button>
-                                <button type='button' value='Edit' className='border h-7 w-24 ml-2'>Edit</button>
+                                <button type='button'
+                                     value='View' 
+                                     className='border h-7 w-24'
+                                     onClick={viewEmployee}
+                                     >View</button>
+                                <button 
+                                    type='button' 
+                                    value='Edit' 
+                                    className='border h-7 w-24 ml-2'
+                                    >Edit</button>
                                 <button
                                      type='button' 
                                      value='Delete' 
@@ -44,6 +61,7 @@ const EmployeeList = (props: Props) => {
                 )
             })}
         </table>
+        {showModal && <EmployeeModal onClose={onCloseModal}/>}
     </div>
   )
 }
