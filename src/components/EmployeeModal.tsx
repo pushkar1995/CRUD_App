@@ -1,17 +1,30 @@
 import React from 'react'
+import { IEmployee } from './Employee.type';
 import './EmployeeModal.style.css'
 
 type Props = {
-    onClose: () => void
+    onClose: () => void;
+    data: IEmployee
 }
 
 const EmployeeModal = (props: Props) => {
-    const { onClose } = props
+    const { onClose, data } = props
   return (
     <div id='myModal' className='modal'>
         <div className='modal-content'>
             <span className='close' onClick={onClose}>&times;</span>
-            <p>Some text in the modal</p>
+            <h3 className='text-center font-bold p-2'>Employee Data</h3>
+            <div>
+              <div>
+                <label>First Name: {data.firstName}</label>
+              </div>
+              <div>
+                <label>Last Name: {data.lastName}</label>
+              </div>
+              <div>
+                <label>Email Add: {data.email}</label>
+              </div>
+            </div>
         </div>
     </div>
   )

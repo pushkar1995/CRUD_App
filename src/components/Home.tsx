@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import AddEmployee from './AddEmployee'
+import EditEmployee from './EditEmployee'
 import { IEmployee, dummyEmployeeList, PageEnum } from './Employee.type'
 import EmployeeList from './EmployeeList'
 
@@ -8,6 +9,7 @@ const Home = () => {
       dummyEmployeeList as IEmployee[]  
     )
     const [shownPage, setShownPage] = useState(PageEnum.list)
+    const [dataToEdit, setDataToEdit] = useState({} as IEmployee)
 
     const onAddEmployeeClickHnd = () => {
         setShownPage(PageEnum.add)
@@ -30,6 +32,19 @@ const Home = () => {
         setEmployeeList(tempList)
     }
 
+    const editEmployeeData = (data: IEmployee) => {
+        setShownPage(PageEnum.edit)
+        setDataToEdit(data)
+    }
+
+    const updateData = (data: IEmployee) => {
+        const filteredData = employeeList.filter(x => x.id === data.id)[0]
+        const indexOfRecord = employeeList.indexOf(filteredData)
+        const tempData = [...employeeList]
+        tempData[indexOfRecord] = data
+        setEmployeeList(tempData)
+    }
+
   return (
     <>
     <article className='bg-primary border-4 border-transparent text-grey text-center'>
@@ -45,10 +60,25 @@ const Home = () => {
                 list={employeeList}
                 onDeleteClickHnd={deleteEmployee}
                 //Passing Callback Function for (delete item)deleteEmployee
+
+                onEdit={editEmployeeData}
             />
         </>
         )}
-        {shownPage === PageEnum.add && <AddEmployee onBackBtnClickHnd={showListPage} onSubmitClickHnd={addEmployee}/>}
+        {shownPage === PageEnum.add && (
+            <AddEmployee 
+             onBackBtnClickHnd={showListPage} 
+             onSubmitClickHnd={addEmployee}
+            />
+        )}
+
+        {shownPage === PageEnum.edit && (
+            <EditEmployee
+                data={dataToEdit}
+                onBackBtnClickHnd={showListPage}
+                onUpdateClickHnd={updateData}
+            />
+        )}
     </section>
     </>
   )

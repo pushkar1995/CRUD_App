@@ -4,16 +4,19 @@ import EmployeeModal from './EmployeeModal'
 
 type Props = {
     list: IEmployee[],
-    onDeleteClickHnd: (data: IEmployee) => void
+    onDeleteClickHnd: (data: IEmployee) => void,
+    onEdit: (data: IEmployee) => void
 }
 
 const EmployeeList = (props: Props) => {
-    const { list, onDeleteClickHnd } = props
+    const { list, onDeleteClickHnd, onEdit } = props
     //Destructuring the Object
 
     const [showModal, setShowModal] = useState(false)
+    const [dataToShow, setDataToShow] = useState(null as IEmployee | null)
 
-    const viewEmployee = () => {
+    const viewEmployee = (data: IEmployee) => {
+        setDataToShow(data)
         setShowModal(true)
     }
 
@@ -41,12 +44,13 @@ const EmployeeList = (props: Props) => {
                                 <button type='button'
                                      value='View' 
                                      className='border h-7 w-24'
-                                     onClick={viewEmployee}
+                                     onClick={() => viewEmployee(employee)}
                                      >View</button>
                                 <button 
                                     type='button' 
                                     value='Edit' 
                                     className='border h-7 w-24 ml-2'
+                                    onClick={() => onEdit(employee)}
                                     >Edit</button>
                                 <button
                                      type='button' 
@@ -61,7 +65,10 @@ const EmployeeList = (props: Props) => {
                 )
             })}
         </table>
-        {showModal && <EmployeeModal onClose={onCloseModal}/>}
+        {/* {showModal &&  <EmployeeModal onClose={onCloseModal} />} */}
+        {showModal && dataToShow !== null &&  (
+            <EmployeeModal onClose={onCloseModal} data={dataToShow} />
+        )}
     </div>
   )
 }

@@ -16,5 +16,6 @@ export const dummyEmployeeList: IEmployee[] = [
 
 export enum PageEnum {
     list,
-    add
+    add,
+    edit
 }
