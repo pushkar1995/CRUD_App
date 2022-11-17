@@ -22,3 +22,12 @@ You will learn, how to use
 3. How to pass data from Parent to child component
 4. JavaScript array
 5. Applying styles in React
+
+
+What we can further improve
+
+1. Use React UI component library like Material UI,Microsoft fluentui etc
+2. Use state management library like Redux
+3. Use Backend application API to store data
+4. Use routing
+5. Use package for React form like React-Hook-Form or any package for form validation

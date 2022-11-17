@@ -7,7 +7,7 @@ type Props = {
 }
 
 const AddEmployee = (props: Props) => {
-  const { onBackBtnClickHnd, onSubmitClickHnd } =props
+  const { onBackBtnClickHnd, onSubmitClickHnd } = props
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
