@@ -4,7 +4,7 @@ import EmployeeModal from './EmployeeModal'
 
 type Props = {
     list: IEmployee[],
-    onDeleteClickHnd: (data: IEmployee) => void,
+    onDeleteClickHnd: (id: Number) => void,
     onEdit: (data: IEmployee) => void
 }
 
@@ -36,7 +36,7 @@ const EmployeeList = (props: Props) => {
             {list.map(employee => {
                 console.log(employee)
                 return (
-                    <tr key={employee.id}>
+                    <tr>
                         <td className='p-2 border border-secondary-light text-left'>{employee.firstName} {employee.lastName}</td>
                         <td className='p-2 border border-secondary-light text-left'>{employee.email}</td>
                         <td className='p-2 border border-secondary-light text-left'>
@@ -56,7 +56,7 @@ const EmployeeList = (props: Props) => {
                                      type='button' 
                                      value='Delete' 
                                      className='border h-7 w-24 ml-2'
-                                     onClick={() => onDeleteClickHnd(employee)}
+                                     onClick={() => onDeleteClickHnd(employee.id)}
                                      //Calling the Callback function
                                      >Delete</button>
                             </div>

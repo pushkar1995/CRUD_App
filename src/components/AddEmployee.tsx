@@ -27,7 +27,7 @@ const AddEmployee = (props: Props) => {
   const onSubmitBtnClickHnd = (e: any) => {
     e.preventDefault()
     const data: IEmployee = {
-        id: new Date().toJSON.toString(),
+        id: new Date().getMilliseconds(),
         firstName: firstName,
         lastName: lastName,
         email: email

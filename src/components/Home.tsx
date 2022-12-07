@@ -35,13 +35,10 @@ const Home = () => {
         _setEmployeeList([...employeeList, data])
     }
 
-    const deleteEmployee = (data: IEmployee) => {
-        //To Index from array i.e. employeeList ,splice that and Update new record.
-        const indexToDelete = employeeList.indexOf(data)
-        const tempList = [...employeeList]
-
-        tempList.splice(indexToDelete, 1);
-        _setEmployeeList(tempList)
+    const deleteEmployee = (id: Number) => {
+     _setEmployeeList(employeeList.filter((employee) => {
+        return employee.id !== id
+     }))
     }
 
     const editEmployeeData = (data: IEmployee) => {
@@ -50,11 +47,12 @@ const Home = () => {
     }
 
     const updateData = (data: IEmployee) => {
-        const filteredData = employeeList.filter(x => x.id === data.id)[0]
-        const indexOfRecord = employeeList.indexOf(filteredData)
-        const tempData = [...employeeList]
-        tempData[indexOfRecord] = data
-        _setEmployeeList(tempData)
+          _setEmployeeList(employeeList.map(employee => ({
+            ...employee,
+            firstName: employee.id === data.id ? data.firstName: employee.firstName,
+            lastName: employee.id === data.id ? data.lastName: employee.lastName,
+            email: employee.id === data.id ? data.email: employee.email
+        })))
     }
 
   return (
